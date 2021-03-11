@@ -43,7 +43,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:4000",
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/react-router": "^5.1.11",
