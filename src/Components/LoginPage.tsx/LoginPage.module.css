@@ -3,13 +3,5 @@
   width: 100vw;
   align-items: center;
   justify-content: center;
-}
-
-.loginForm {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  max-width: 600px;
-  min-width: 40vw;
 }
