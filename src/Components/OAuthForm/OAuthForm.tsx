@@ -7,8 +7,9 @@ import github from '../../assets/githubLogoBlack.png';
 import twitter from '../../assets/twitterLogo.png';
 import CustomButton from '../CustomButton/CustomButton';
 
-const OAuthForm = () => {
+const OAuthForm = ({ children }) => {
   const [whiteLogo, setWhiteLogo] = useState(false);
+  const [signIn, setSignIn] = useState(true);
 
   const googleLogin = () => {
     window.open('https://auth-testing-renzik.herokuapp.com/auth/google', '_self');
@@ -24,13 +25,13 @@ const OAuthForm = () => {
   return (
     <div className={styles.OAuthContainer}>
       <CustomButton imageUrl={google} name='Google' onClick={googleLogin}>
-        Sign in with Google
+        {children} with Google
       </CustomButton>
       <CustomButton imageUrl={github} name='Github' onClick={githubLogin}>
-        Sign in with Github
+        {children} with Github
       </CustomButton>
       <CustomButton imageUrl={twitter} name='Twitter' onClick={twitterLogin}>
-        Sign in with Twitter
+        {children} with Twitter
       </CustomButton>
     </div>
   );

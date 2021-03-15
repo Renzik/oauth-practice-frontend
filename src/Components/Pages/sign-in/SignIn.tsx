@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Link, Route } from 'react-router-dom';
 
 import OAuthForm from '../../OAuthForm/OAuthForm';
-import LocalAuthForm from '../../LocalAuthForm/LocalAuthForm';
+import SignInForm from '../../SignInForm/SignInForm';
 import CustomButton from '../../CustomButton/CustomButton';
-import { SignInContainer, Title, SubTitle, Div } from './SignIn.styles';
+import { SignInContainer, Title, SubTitle, Div, SignInOutLink, Button } from './SignIn.styles';
 import mailImage from '../../../assets/mail.png';
 import { AiOutlineLeft } from 'react-icons/ai';
 
@@ -20,7 +20,7 @@ const SignInPage = () => {
       {pageLocation === 'start' && (
         <SignInContainer>
           <Title className='start-title'>Welcome Back.</Title>
-          <OAuthForm />
+          <OAuthForm>Sign In</OAuthForm>
           <CustomButton
             imageUrl={mailImage}
             name='email'
@@ -28,8 +28,8 @@ const SignInPage = () => {
             Sign in with email
           </CustomButton>
 
-          <SubTitle className='start-subTitle'>
-            No Account? <Link to='/register'>Sign Up</Link>
+          <SubTitle>
+            No Account? <SignInOutLink to='/register'>Sign Up</SignInOutLink>
           </SubTitle>
         </SignInContainer>
       )}
@@ -42,11 +42,11 @@ const SignInPage = () => {
               Enter the email address associated with your account
             </SubTitle>
           </Div>
-          <LocalAuthForm />
+          <SignInForm />
           <SubTitle className='signInWithEmail-subTitle'>
-            <button className='backToLoginOptionsButton' onClick={() => setPageLocation('start')}>
+            <Button className='backToLoginOptionsButton' onClick={() => setPageLocation('start')}>
               <AiOutlineLeft /> All sign in options
-            </button>
+            </Button>
           </SubTitle>
         </SignInContainer>
       )}

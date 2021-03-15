@@ -1,27 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route } from 'react-router';
 
-import LocalAuthForm from '../../LocalAuthForm/LocalAuthForm';
-import CustomButton from '../../OAuthButton/OAuthButton';
+import LocalAuthForm from '../../SignInForm/SignInForm';
+import CustomButton from '../../CustomButton/CustomButton';
 import OAuthForm from '../../OAuthForm/OAuthForm';
 import { SignUpContainer } from './SignUp.styles';
 import mailImage from '../../../assets/mail.png';
+import { SubTitle, SignInOutLink, Title, Div, Button } from '../sign-in/SignIn.styles';
+import { AiOutlineLeft } from 'react-icons/ai';
 
 const SignUp = () => {
-  const signUpWithEmail = () => {
-    return <Route component={LocalAuthForm} />;
-  };
+  const [pageLocation, setPageLocation] = useState('start');
 
   return (
-    <SignUpContainer>
-      <h1>Join Ntornos.</h1>
-      {/* <LocalAuthForm /> */}
+    <>
+      {pageLocation === 'start' && (
+        <SignUpContainer>
+          <Title>Join Ntornos.</Title>
 
-      <OAuthForm />
-      <CustomButton imageUrl={mailImage} name='email' onClick={signUpWithEmail}>
-        Sign Up email
-      </CustomButton>
-    </SignUpContainer>
+          <OAuthForm>Sign up</OAuthForm>
+          <CustomButton
+            imageUrl={mailImage}
+            name='email'
+            onClick={() => setPageLocation('signUpWithEmail')}>
+            Sign up with email
+          </CustomButton>
+          <SubTitle>
+            Have an account? <SignInOutLink to='/login'>Sign In</SignInOutLink>
+          </SubTitle>
+        </SignUpContainer>
+      )}
+
+      {pageLocation === 'signUpWithEmail' && (
+        <SignUpContainer>
+          <Title>Sign up with email</Title>
+          <Div className='emailSignInSubTitleContainer'>
+            <SubTitle>Enter your new account details</SubTitle>
+          </Div>
+
+          <SubTitle>
+            <Button className='backToLoginOptionsButton' onClick={() => setPageLocation('start')}>
+              <AiOutlineLeft /> All sign up options
+            </Button>
+          </SubTitle>
+        </SignUpContainer>
+      )}
+    </>
   );
 };
 

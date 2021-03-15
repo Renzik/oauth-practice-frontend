@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-import styles from './LocalAuthForm.module.css';
+import styles from './SignInForm.module.css';
 
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
 
-const LocalAuthForm = () => {
+const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -38,4 +38,4 @@ const LocalAuthForm = () => {
   );
 };
 
-export default LocalAuthForm;
+export default SignInForm;

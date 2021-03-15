@@ -13,6 +13,7 @@ import SignUp from './Components/Pages/sign-up/SignUp';
 const App = () => {
   // getting our current user object present in App so that we can render routes depending if an user is logged in or not.
   const userObj = useContext(myContext) as IUser;
+  console.log(userObj);
 
   return (
     <BrowserRouter>
