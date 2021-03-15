@@ -19,7 +19,6 @@ const NavBar = () => {
       }
     );
     if (res.data === 'done') {
-      // history.push('/login');
       window.location.href = '/';
     }
   };
