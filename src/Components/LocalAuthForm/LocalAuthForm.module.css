@@ -4,6 +4,7 @@
 
 .button {
   min-width: 165px;
+  width: 250px;
   height: 50px;
   font-size: 14px;
   font-family: 'Poppins';

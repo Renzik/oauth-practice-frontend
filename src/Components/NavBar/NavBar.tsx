@@ -31,11 +31,16 @@ const NavBar = () => {
           <Link to='/'>Home</Link>
         </li>
         {userObj ? (
-          <li onClick={logout}>Logout</li>
+          <li onClick={logout}>Log out</li>
         ) : (
-          <li>
-            <Link to='/login'>Login</Link>
-          </li>
+          <>
+            <li>
+              <Link to='/login'>Sign In</Link>
+            </li>
+            <li>
+              <Link to='/register'>Try Free</Link>
+            </li>
+          </>
         )}
       </ul>
     </div>

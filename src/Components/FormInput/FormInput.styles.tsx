@@ -24,7 +24,7 @@ export const FormInputContainer = styled.input`
   background-color: white;
   color: ${mainColor};
   font-size: 14px;
-  padding: 10px 10px 10px 5px;
+  padding: 10px 0px 10px 0px;
   display: block;
   width: 100%;
   border: none;

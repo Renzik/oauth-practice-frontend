@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { IUser } from '../../types/maintypes';
-import { myContext } from '../Context';
+import { IUser } from '../../../types/maintypes';
+import { myContext } from '../../Context';
 
 const Homepage = () => {
   const context = useContext(myContext) as IUser;

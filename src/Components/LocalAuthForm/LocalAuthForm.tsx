@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import styles from './LocalAuthForm.module.css';
 
 import FormInput from '../FormInput/FormInput';
+import CustomButton from '../CustomButton/CustomButton';
 
 const LocalAuthForm = () => {
   const [email, setEmail] = useState('');
@@ -12,8 +13,6 @@ const LocalAuthForm = () => {
 
   return (
     <div className={styles.loginFormContainer}>
-      <span className={styles.subTitle}>I already have an account</span>
-
       <form onSubmit={handleSubmit}>
         <FormInput
           name='email'
@@ -33,9 +32,7 @@ const LocalAuthForm = () => {
           required
         />
 
-        <button className={styles.button} type='submit'>
-          Sign In
-        </button>
+        <CustomButton onClick={handleSubmit}>Continue</CustomButton>
       </form>
     </div>
   );
