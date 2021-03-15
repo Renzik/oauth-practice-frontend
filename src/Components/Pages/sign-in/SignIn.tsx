@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link, Route } from 'react-router-dom';
 
 import OAuthForm from '../../OAuthForm/OAuthForm';
 import SignInForm from '../../SignInForm/SignInForm';
@@ -10,10 +9,6 @@ import { AiOutlineLeft } from 'react-icons/ai';
 
 const SignInPage = () => {
   const [pageLocation, setPageLocation] = useState('start');
-
-  const navigate = location => {
-    setPageLocation(location);
-  };
 
   return (
     <>

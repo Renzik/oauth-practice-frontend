@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 import styles from './OAuthForm.module.css';
 
 import google from '../../assets/googleLogo.png';
@@ -8,9 +6,6 @@ import twitter from '../../assets/twitterLogo.png';
 import CustomButton from '../CustomButton/CustomButton';
 
 const OAuthForm = ({ children }) => {
-  const [whiteLogo, setWhiteLogo] = useState(false);
-  const [signIn, setSignIn] = useState(true);
-
   const googleLogin = () => {
     window.open('https://auth-testing-renzik.herokuapp.com/auth/google', '_self');
   };

@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { Route } from 'react-router';
 
-import LocalAuthForm from '../../SignInForm/SignInForm';
-import CustomButton from '../../CustomButton/CustomButton';
-import OAuthForm from '../../OAuthForm/OAuthForm';
 import { SignUpContainer } from './SignUp.styles';
-import mailImage from '../../../assets/mail.png';
 import { SubTitle, SignInOutLink, Title, Div, Button } from '../sign-in/SignIn.styles';
 import { AiOutlineLeft } from 'react-icons/ai';
+
+import CustomButton from '../../CustomButton/CustomButton';
+import OAuthForm from '../../OAuthForm/OAuthForm';
+import mailImage from '../../../assets/mail.png';
 
 const SignUp = () => {
   const [pageLocation, setPageLocation] = useState('start');
