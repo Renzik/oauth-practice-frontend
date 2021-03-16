@@ -7,6 +7,7 @@ import { AiOutlineLeft } from 'react-icons/ai';
 import CustomButton from '../../CustomButton/CustomButton';
 import OAuthForm from '../../OAuthForm/OAuthForm';
 import mailImage from '../../../assets/mail.png';
+import SignUpForm from '../../SignUpForm/SignUpForm';
 
 const SignUp = () => {
   const [pageLocation, setPageLocation] = useState('start');
@@ -36,6 +37,8 @@ const SignUp = () => {
           <Div className='emailSignInSubTitleContainer'>
             <SubTitle>Enter your new account details</SubTitle>
           </Div>
+
+          <SignUpForm />
 
           <SubTitle>
             <Button className='backToLoginOptionsButton' onClick={() => setPageLocation('start')}>
