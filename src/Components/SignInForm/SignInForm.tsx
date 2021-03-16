@@ -4,7 +4,7 @@ import styles from './SignInForm.module.css';
 
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 const SignInForm = () => {
   const [email, setEmail] = useState('');
@@ -12,14 +12,19 @@ const SignInForm = () => {
 
   const handleSubmit = async () => {
     try {
-      const req = await axios.post(
-        'http://localhost:4000/api/users/login',
+      const { data }: { data: AxiosResponse } = await axios.post(
+        'https://auth-testing-renzik.herokuapp.com/api/users/login',
         {
           email,
           password,
         },
         { withCredentials: true }
       );
+
+      if (data.status) {
+        setEmail('');
+        setPassword('');
+      }
     } catch (err) {
       console.error(err);
     }
