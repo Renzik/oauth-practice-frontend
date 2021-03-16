@@ -12,7 +12,8 @@ const Context = (props: any) => {
     const fetchUser = async () => {
       try {
         const { data }: { data: AxiosResponse } = await axios.get(
-          'https://auth-testing-renzik.herokuapp.com/api/users/me',
+          // 'https://auth-testing-renzik.herokuapp.com/api/users/me'
+          'http://localhost:4000/api/users/me',
           {
             // pass cookies from browser to server
             withCredentials: true,

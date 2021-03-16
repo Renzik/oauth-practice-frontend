@@ -1,44 +1,56 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import styles from './SignInForm.module.css';
 
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
 import axios, { AxiosResponse } from 'axios';
+import { IUser } from '../../types/maintypes';
+import { myContext } from '../Context';
 
 const SignInForm = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async () => {
-    try {
-      const { data }: { data: AxiosResponse } = await axios.post(
-        'https://auth-testing-renzik.herokuapp.com/api/users/login',
-        {
-          email,
-          password,
-        },
-        { withCredentials: true }
-      );
+    const { data }: { data: AxiosResponse } = await axios.post(
+      'http://localhost:4000/api/users/login',
+      {
+        username,
+        password,
+      },
+      { withCredentials: true }
+    );
 
-      if (data.status) {
-        setEmail('');
-        setPassword('');
-      }
-    } catch (err) {
-      console.error(err);
+    console.log(data);
+
+    if (data) {
+      setUsername('');
+      setPassword('');
     }
   };
+
+  const getUser = async () => {
+    const { data }: { data: AxiosResponse } = await axios.get(
+      'http://localhost:4000/api/users/me',
+      { withCredentials: true }
+    );
+
+    console.log(data);
+  };
+
+  const userObj = useContext(myContext) as IUser;
+  console.log(userObj);
 
   return (
     <div className={styles.loginFormContainer}>
       <form onSubmit={handleSubmit}>
         <FormInput
-          name='email'
-          type='email'
-          value={email}
-          handleChange={e => setEmail(e.target.value)}
-          label='Email'
+          name='username'
+          type='username'
+          value={username}
+          handleChange={e => setUsername(e.target.value)}
+          label='username'
           required
         />
 
@@ -52,6 +64,7 @@ const SignInForm = () => {
         />
 
         <CustomButton onClick={handleSubmit}>Continue</CustomButton>
+        <CustomButton onClick={getUser}>Get req.user</CustomButton>
       </form>
     </div>
   );
