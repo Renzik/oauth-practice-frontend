@@ -1,20 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 
 import styles from './SignInForm.module.css';
 
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
-import axios, { AxiosResponse } from 'axios';
-import { IUser } from '../../types/maintypes';
-import { myContext } from '../Context';
+import axios from 'axios';
 
 const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async () => {
-    const { data }: { data: AxiosResponse } = await axios.post(
-      // 'http://localhost:4000/api/users/login'
+    const { data }: { data: boolean } = await axios.post(
       'https://auth-testing-renzik.herokuapp.com/api/users/login',
       {
         email,
@@ -23,26 +20,14 @@ const SignInForm = () => {
       { withCredentials: true }
     );
 
-    console.log(data);
-
     if (data) {
       setEmail('');
       setPassword('');
     }
+    if (data) {
+      window.location.href = 'https://modest-einstein-76cd0d.netlify.app';
+    }
   };
-
-  const getUser = async () => {
-    const { data }: { data: AxiosResponse } = await axios.get(
-      // 'http://localhost:4000/api/users/me'
-      'https://auth-testing-renzik.herokuapp.com/api/users/me',
-      { withCredentials: true }
-    );
-
-    console.log(data);
-  };
-
-  const userObj = useContext(myContext) as IUser;
-  console.log(userObj);
 
   return (
     <div className={styles.loginFormContainer}>
@@ -66,7 +51,6 @@ const SignInForm = () => {
         />
 
         <CustomButton onClick={handleSubmit}>Continue</CustomButton>
-        <CustomButton onClick={getUser}>Continue</CustomButton>
       </form>
     </div>
   );
