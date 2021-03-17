@@ -8,17 +8,18 @@ export const myContext = createContext({});
 const Context = (props: any) => {
   const [userObj, setUserObj] = useState<any>();
 
+  const URL =
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:4000/api/users/me'
+      : 'https://auth-testing-renzik.herokuapp.com/api/users/me';
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const { data }: { data: AxiosResponse } = await axios.get(
-          'https://auth-testing-renzik.herokuapp.com/api/users/me',
-          // 'http://localhost:4000/api/users/me'
-          {
-            // pass cookies from browser to server
-            withCredentials: true,
-          }
-        );
+        const { data }: { data: AxiosResponse } = await axios.get(URL, {
+          // pass cookies from browser to server
+          withCredentials: true,
+        });
 
         if (data) setUserObj(data);
       } catch (err) {

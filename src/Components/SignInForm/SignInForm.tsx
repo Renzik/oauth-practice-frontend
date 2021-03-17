@@ -10,9 +10,16 @@ const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  console.log(process.env.NODE_ENV);
+
+  const URL =
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:4000/api/users/login'
+      : 'https://auth-testing-renzik.herokuapp.com/api/users/login';
+
   const handleSubmit = async () => {
     const { data }: { data: boolean } = await axios.post(
-      'https://auth-testing-renzik.herokuapp.com/api/users/login',
+      URL,
       {
         email,
         password,
@@ -25,7 +32,7 @@ const SignInForm = () => {
       setPassword('');
     }
     if (data) {
-      window.location.href = 'https://modest-einstein-76cd0d.netlify.app';
+      window.location.href = '/';
     }
   };
 

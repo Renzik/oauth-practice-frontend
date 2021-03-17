@@ -11,13 +11,15 @@ const NavBar = () => {
   // getting our current user object present in App so that we can render routes depending if an user is logged in or not.
   const userObj = useContext(myContext) as IUser;
 
+  const URL =
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:4000/api/users/logout'
+      : 'https://auth-testing-renzik.herokuapp.com/api/users/logout';
+
   const logout = async () => {
-    const res: AxiosResponse = await axios.get(
-      'https://auth-testing-renzik.herokuapp.com/api/users/logout',
-      {
-        withCredentials: true,
-      }
-    );
+    const res: AxiosResponse = await axios.get(URL, {
+      withCredentials: true,
+    });
     if (res.data === 'done') {
       window.location.href = '/';
     }
@@ -25,6 +27,7 @@ const NavBar = () => {
 
   return (
     <div className={styles.navBarWrapper}>
+      <h2>Logo</h2>
       <ul className={styles.navBar}>
         <li>
           <Link to='/'>Home</Link>

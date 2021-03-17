@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import { SignUpContainer } from './SignUp.styles';
 import { SubTitle, SignInOutLink, Title, Div, Button } from '../sign-in/SignIn.styles';
 import { AiOutlineLeft } from 'react-icons/ai';
 
@@ -8,6 +7,7 @@ import CustomButton from '../../CustomButton/CustomButton';
 import OAuthForm from '../../OAuthForm/OAuthForm';
 import mailImage from '../../../assets/mail.png';
 import SignUpForm from '../../SignUpForm/SignUpForm';
+import Card from '../../Card/Card';
 
 const SignUp = () => {
   const [pageLocation, setPageLocation] = useState('start');
@@ -15,37 +15,52 @@ const SignUp = () => {
   return (
     <>
       {pageLocation === 'start' && (
-        <SignUpContainer>
+        <Card>
           <Title>Join Ntornos.</Title>
-
-          <OAuthForm>Sign up</OAuthForm>
-          <CustomButton
-            imageUrl={mailImage}
-            name='email'
-            onClick={() => setPageLocation('signUpWithEmail')}>
-            Sign up with email
-          </CustomButton>
+          <div>
+            <OAuthForm>Sign up</OAuthForm>
+            <CustomButton
+              imageUrl={mailImage}
+              name='email'
+              onClick={() => setPageLocation('signUpWithEmail')}>
+              Sign up with email
+            </CustomButton>
+          </div>
           <SubTitle>
             Have an account? <SignInOutLink to='/login'>Sign In</SignInOutLink>
           </SubTitle>
-        </SignUpContainer>
+        </Card>
       )}
 
       {pageLocation === 'signUpWithEmail' && (
-        <SignUpContainer>
+        <Card>
           <Title>Sign up with email</Title>
           <Div className='emailSignInSubTitleContainer'>
             <SubTitle>Enter your new account details</SubTitle>
           </Div>
 
-          <SignUpForm />
+          <SignUpForm onSuccessfulSignUp={setPageLocation} />
 
           <SubTitle>
             <Button className='backToLoginOptionsButton' onClick={() => setPageLocation('start')}>
               <AiOutlineLeft /> All sign up options
             </Button>
           </SubTitle>
-        </SignUpContainer>
+        </Card>
+      )}
+
+      {pageLocation === 'end' && (
+        <Card>
+          <Title>Welcome to Ntornos.</Title>
+          <Div className='emailSignInSubTitleContainer'>
+            <SubTitle>Sign up successful</SubTitle>
+          </Div>
+          <Div className='proceedToLogin'>
+            <CustomButton onClick={() => (window.location.href = '/login')}>
+              Proceed to login
+            </CustomButton>
+          </Div>
+        </Card>
       )}
     </>
   );

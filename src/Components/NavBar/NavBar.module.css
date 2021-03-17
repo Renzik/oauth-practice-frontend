@@ -4,7 +4,7 @@
   color: white;
   background-color: black;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   margin: 0;
 }
@@ -25,4 +25,8 @@
   font-family: 'Poppins', sans-serif;
   color: white;
   text-decoration: none;
+}
+
+.navBarWrapper h2 {
+  margin-left: 4%;
 }

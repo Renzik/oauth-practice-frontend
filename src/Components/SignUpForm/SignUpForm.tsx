@@ -4,16 +4,20 @@ import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
 import axios from 'axios';
 
-const SignUpForm = () => {
+const SignUpForm = ({ onSuccessfulSignUp }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
 
+  const URL =
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:4000/api/users/register'
+      : 'https://auth-testing-renzik.herokuapp.com/api/users/register';
+
   const handleSubmit = async () => {
     try {
-      const req = await axios.post(
-        // 'http://localhost:4000/api/users/register'
-        'https://auth-testing-renzik.herokuapp.com/api/users/register',
+      const { data }: { data: boolean } = await axios.post(
+        URL,
         {
           email,
           password,
@@ -22,7 +26,10 @@ const SignUpForm = () => {
         { withCredentials: true }
       );
 
-      console.log(req);
+      if (data) {
+        onSuccessfulSignUp('end');
+        // window.location.href = '/login';
+      }
     } catch (err) {
       console.error(err);
     }

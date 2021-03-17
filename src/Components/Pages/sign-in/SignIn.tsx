@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import OAuthForm from '../../OAuthForm/OAuthForm';
 import SignInForm from '../../SignInForm/SignInForm';
 import CustomButton from '../../CustomButton/CustomButton';
-import { SignInContainer, Title, SubTitle, Div, SignInOutLink, Button } from './SignIn.styles';
+import { Title, SubTitle, Div, SignInOutLink, Button } from './SignIn.styles';
 import mailImage from '../../../assets/mail.png';
 import { AiOutlineLeft } from 'react-icons/ai';
+import Card from '../../Card/Card';
 
 const SignInPage = () => {
   const [pageLocation, setPageLocation] = useState('start');
@@ -13,24 +14,26 @@ const SignInPage = () => {
   return (
     <>
       {pageLocation === 'start' && (
-        <SignInContainer>
+        <Card>
           <Title className='start-title'>Welcome Back.</Title>
-          <OAuthForm>Sign In</OAuthForm>
-          <CustomButton
-            imageUrl={mailImage}
-            name='email'
-            onClick={() => setPageLocation('signInWithEmail')}>
-            Sign in with email
-          </CustomButton>
+          <div>
+            <OAuthForm>Sign In</OAuthForm>
+            <CustomButton
+              imageUrl={mailImage}
+              name='email'
+              onClick={() => setPageLocation('signInWithEmail')}>
+              Sign in with email
+            </CustomButton>
+          </div>
 
           <SubTitle>
-            No Account? <SignInOutLink to='/register'>Sign Up</SignInOutLink>
+            No account? <SignInOutLink to='/register'>Create one</SignInOutLink>
           </SubTitle>
-        </SignInContainer>
+        </Card>
       )}
 
       {pageLocation === 'signInWithEmail' && (
-        <SignInContainer>
+        <Card>
           <Title className='signInWithEmail-title'>Sign in with email</Title>
           <Div className='emailSignInSubTitleContainer'>
             <SubTitle className='emailSignInSubTitle' spacing='bg'>
@@ -43,7 +46,7 @@ const SignInPage = () => {
               <AiOutlineLeft /> All sign in options
             </Button>
           </SubTitle>
-        </SignInContainer>
+        </Card>
       )}
     </>
   );

@@ -4,5 +4,6 @@ export interface IUser {
   twitterId?: string;
   githubId?: string;
   username: string;
+  email: string;
   __v: number;
 }
