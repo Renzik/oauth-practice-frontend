@@ -15,6 +15,8 @@ const App = () => {
   const userObj = useContext(myContext) as IUser;
   console.log(userObj);
 
+  console.log('NODE_ENV: ', process.env.NODE_ENV);
+  
   return (
     <BrowserRouter>
       <NavBar />
