@@ -9,14 +9,15 @@ import { IUser } from '../../types/maintypes';
 import { myContext } from '../Context';
 
 const SignInForm = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async () => {
     const { data }: { data: AxiosResponse } = await axios.post(
-      'http://localhost:4000/api/users/login',
+      // 'http://localhost:4000/api/users/login'
+      'https://auth-testing-renzik.herokuapp.com/api/users/login',
       {
-        username,
+        email,
         password,
       },
       { withCredentials: true }
@@ -25,14 +26,15 @@ const SignInForm = () => {
     console.log(data);
 
     if (data) {
-      setUsername('');
+      setEmail('');
       setPassword('');
     }
   };
 
   const getUser = async () => {
     const { data }: { data: AxiosResponse } = await axios.get(
-      'http://localhost:4000/api/users/me',
+      // 'http://localhost:4000/api/users/me'
+      'https://auth-testing-renzik.herokuapp.com/api/users/me',
       { withCredentials: true }
     );
 
@@ -46,11 +48,11 @@ const SignInForm = () => {
     <div className={styles.loginFormContainer}>
       <form onSubmit={handleSubmit}>
         <FormInput
-          name='username'
-          type='username'
-          value={username}
-          handleChange={e => setUsername(e.target.value)}
-          label='username'
+          name='email'
+          type='email'
+          value={email}
+          handleChange={e => setEmail(e.target.value)}
+          label='Email'
           required
         />
 
@@ -64,7 +66,7 @@ const SignInForm = () => {
         />
 
         <CustomButton onClick={handleSubmit}>Continue</CustomButton>
-        <CustomButton onClick={getUser}>Get req.user</CustomButton>
+        <CustomButton onClick={getUser}>Continue</CustomButton>
       </form>
     </div>
   );

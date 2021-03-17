@@ -12,7 +12,8 @@ const SignUpForm = () => {
   const handleSubmit = async () => {
     try {
       const req = await axios.post(
-        'http://localhost:4000/api/users/register',
+        // 'http://localhost:4000/api/users/register'
+        'https://auth-testing-renzik.herokuapp.com/api/users/register',
         {
           email,
           password,
