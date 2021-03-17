@@ -28,7 +28,7 @@ const Context = (props: any) => {
     };
 
     fetchUser();
-  }, []);
+  }, [URL]);
 
   return <myContext.Provider value={userObj}>{props.children}</myContext.Provider>;
 };
